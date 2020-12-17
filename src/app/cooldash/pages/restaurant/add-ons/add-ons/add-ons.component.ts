@@ -1,17 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonService } from '../../../../../cooldash/services/common/common.service';
-import { ApiService } from '../../../../../cooldash/services/api/api.service';
-import { PopupService } from '../../../../../cooldash/services/popup/popup.service';
-import Swal from 'sweetalert2';
-import { Router } from '@angular/router';
+import { Component, OnInit } from "@angular/core";
+import { CommonService } from "../../../../../cooldash/services/common/common.service";
+import { ApiService } from "../../../../../cooldash/services/api/api.service";
+import { PopupService } from "../../../../../cooldash/services/popup/popup.service";
+import Swal from "sweetalert2";
+import { Router } from "@angular/router";
 
 @Component({
-  selector: 'app-add-ons',
-  templateUrl: './add-ons.component.html',
-  styleUrls: ['./add-ons.component.scss']
+  selector: "app-add-ons",
+  templateUrl: "./add-ons.component.html",
+  styleUrls: ["./add-ons.component.scss"],
 })
 export class AddOnsComponent implements OnInit {
-
   totalItems: number;
   currentPage = 1;
   serialNumber = 0;
@@ -26,12 +25,12 @@ export class AddOnsComponent implements OnInit {
     private api: ApiService,
     private comm: CommonService,
     private dialogService: PopupService,
-    private router: Router,
+    private router: Router
   ) {}
 
   ngOnInit() {
-    if (localStorage.getItem('restaurantLogin')) {
-      const data = JSON.parse(localStorage.getItem('restaurantLogin'));
+    if (localStorage.getItem("restaurantLogin")) {
+      const data = JSON.parse(localStorage.getItem("restaurantLogin"));
       if (data.id) {
         this.id = data.id;
         this.getAddOns(this.id);
@@ -40,58 +39,61 @@ export class AddOnsComponent implements OnInit {
   }
 
   getAddOns(id) {
-    this.api.getAddOns(id).subscribe(response => {
-      console.log(response['response']);
-      if (response['response']['success']) {
-        if (response['data'] && response['data'].length) {
-          this.addOnsList = response['data'];
+    this.api.getAddOns(id).subscribe((response) => {
+      console.log(response["response"]);
+      if (response["response"]["success"]) {
+        if (response["data"] && response["data"].length) {
+          this.addOnsList = response["data"];
           for (const data of this.addOnsList) {
-            data.status = data['status'] === 1 ? true : false;
+            data.status = data["status"] === 1 ? true : false;
           }
         }
         this.loader = false;
         // this.totalItems = response.count;
       }
-      if (!response['success']) {
+      if (!response["success"]) {
         return;
       }
     });
   }
 
   addAddOn() {
-    this.router.navigate(['restaurant/add-add/add-add-ons', this.id]);
+    this.router.navigate(["restaurant/add-add/add-add-ons", this.id]);
   }
 
   editAddOn(item) {
-    this.router.navigate(['restaurant/add-add/edit-add-ons', this.id, item._id]);
+    this.router.navigate([
+      "restaurant/add-add/edit-add-ons",
+      this.id,
+      item._id,
+    ]);
   }
-
 
   deleteAddOn(item) {
     Swal.fire({
-      title: 'Are you sure?',
-      text: 'Once deleted, you will not be able to recover this Add On!',
-      icon: 'warning',
+      title: "Are you sure?",
+      text: "Once deleted, you will not be able to recover this Add On!",
+      icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: '#3085D6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes',
-      allowOutsideClick: false
-    }).then(result => {
+      confirmButtonColor: "#3085D6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes",
+      allowOutsideClick: false,
+    }).then((result) => {
       if (result.value) {
         const data = {
           updateId: item._id,
         };
         this.api.deleteAddOn(item._id).subscribe((res: any) => {
-          if (res['response']['success']) {
+          if (res["response"]["success"]) {
             Swal.fire({
-              title: 'Deleted!',
-              text: res['response']['message'],
-              icon: 'success'
+              title: "Deleted!",
+              text: res["response"]["message"],
+              icon: "success",
             });
             this.getAddOns(this.id);
           }
-          if (!res['response']['success']) {
+          if (!res["response"]["success"]) {
             return;
           }
         });
@@ -102,13 +104,13 @@ export class AddOnsComponent implements OnInit {
   updateActiveStatus(item) {
     const data = {
       updateId: item._id,
-      isActive: item.isActive ? 1 : 0
+      isActive: item.isActive ? 1 : 0,
     };
     this.api.activeInactiveAddOn(data).subscribe((res: any) => {
-      if (res['response']['success']) {
+      if (res["response"]["success"]) {
         this.getAddOns(this.id);
       }
-      if (!res['response']['success']) {
+      if (!res["response"]["success"]) {
         return;
       }
     });
@@ -119,5 +121,4 @@ export class AddOnsComponent implements OnInit {
   //   this.serialNumber = this.filterBody.page * this.filterBody.limit;
   //   this.getAddOns();
   // }
-
 }

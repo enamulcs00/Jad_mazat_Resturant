@@ -3,7 +3,7 @@ import {
   FormBuilder,
   FormGroup,
   Validators,
-  FormControl
+  FormControl,
 } from "@angular/forms";
 import { CommonService } from "../../../../../services/common/common.service";
 import { ApiService } from "../../../../../services/api/api.service";
@@ -15,7 +15,7 @@ import { MapsAPILoader } from "@agm/core";
 @Component({
   selector: "app-add-food-item",
   templateUrl: "./add-food-item.component.html",
-  styleUrls: ["./add-food-item.component.scss"]
+  styleUrls: ["./add-food-item.component.scss"],
 })
 export class AddFoodItemComponent implements OnInit {
   restaurantForm: FormGroup;
@@ -38,16 +38,16 @@ export class AddFoodItemComponent implements OnInit {
   type: any = [
     {
       name: "Vegetrainian",
-      value: 0
+      value: 0,
     },
     {
       name: "Non-Vegetrainian",
-      value: 1
+      value: 1,
     },
     {
       name: "Both",
-      value: 2
-    }
+      value: 2,
+    },
   ];
   constructor(
     private formBuilder: FormBuilder,
@@ -57,10 +57,10 @@ export class AddFoodItemComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private mapsAPILoader: MapsAPILoader
-  ) { }
+  ) {}
 
   ngOnInit() {
-    this.route.params.subscribe(params => {
+    this.route.params.subscribe((params) => {
       this.id = params["id"];
       this.itemId = params["itemId"];
       this.getAllFoodType();
@@ -75,20 +75,29 @@ export class AddFoodItemComponent implements OnInit {
         "",
         Validators.compose([Validators.required, Validators.maxLength(250)])
       ),
-      type: new FormControl(
+      type: new FormControl("", Validators.compose([Validators.required])),
+      restaurantId: new FormControl(
         "",
         Validators.compose([Validators.required])
       ),
-      restaurantId: new FormControl("", Validators.compose([Validators.required])),
-      foodTypeId: new FormControl("", Validators.compose([Validators.required])),
+      foodTypeId: new FormControl(
+        "",
+        Validators.compose([Validators.required])
+      ),
       // discount: new FormControl("", Validators.compose([Validators.required])),
       foodCategoryId: new FormControl(
         "",
         Validators.compose([Validators.required])
       ),
-      preprationTime: new FormControl("", Validators.compose([Validators.required])),
-      price: new FormControl("", [Validators.required, Validators.pattern(/^[.\d]+$/)]),
-      addOn: new FormControl(''),
+      preprationTime: new FormControl(
+        "",
+        Validators.compose([Validators.required])
+      ),
+      price: new FormControl("", [
+        Validators.required,
+        Validators.pattern(/^[.\d]+$/),
+      ]),
+      addOn: new FormControl(""),
     });
     this.dropDownSetting = this.comm.dropSetting;
     this.singleDropDownSetting = this.comm.singleDropSetting;
@@ -98,7 +107,7 @@ export class AddFoodItemComponent implements OnInit {
 
   getAllFoodType() {
     const list = [];
-    this.api.getRestaurantTypeById(this.id).subscribe(response => {
+    this.api.getRestaurantTypeById(this.id).subscribe((response) => {
       if (response["response"]["success"]) {
         this.foodType = response["data"];
       }
@@ -106,24 +115,24 @@ export class AddFoodItemComponent implements OnInit {
   }
 
   getAddOns(id) {
-    this.api.getAddOns(id).subscribe(response => {
-      console.log(response['response']);
-      if (response['response']['success']) {
-        if (response['data'] && response['data'].length) {
-          this.addOnsList = response['data'];
+    this.api.getAddOns(id).subscribe((response) => {
+      console.log(response["response"]);
+      if (response["response"]["success"]) {
+        if (response["data"] && response["data"].length) {
+          this.addOnsList = response["data"];
           for (const data of this.addOnsList) {
-            data.status = data['status'] === 1 ? true : false;
+            data.status = data["status"] === 1 ? true : false;
           }
         }
         // this.totalItems = response.count;
       }
-      if (!response['success']) {
+      if (!response["success"]) {
         return;
       }
     });
   }
   getFoodItemById(id) {
-    this.api.getResturantFoodItemById(id).subscribe(res => {
+    this.api.getResturantFoodItemById(id).subscribe((res) => {
       if (res["response"]["success"]) {
         this.restaurantDetail = res["data"][0];
         console.log(this.restaurantDetail);
@@ -134,7 +143,7 @@ export class AddFoodItemComponent implements OnInit {
 
   getCategories() {
     const list = [];
-    this.api.getAllRestaurantCategories().subscribe(response => {
+    this.api.getAllRestaurantCategories().subscribe((response) => {
       if (response["response"]["success"]) {
         this.categoryList = response["response"]["message"];
       }
@@ -152,7 +161,7 @@ export class AddFoodItemComponent implements OnInit {
     }
   }
 
-  setValues = data => {
+  setValues = (data) => {
     if (data) {
       this.restaurantForm.patchValue({
         name: data.name,
@@ -164,7 +173,7 @@ export class AddFoodItemComponent implements OnInit {
         foodCategoryId: data.foodCategoryId,
         restaurantId: data.restaurantId,
         type: data.type,
-        addOn: data.addOn
+        addOn: data.addOn,
       });
       if (data.image) {
         this.categoryImage = this.comm.imageUrl + data.image;
@@ -180,10 +189,11 @@ export class AddFoodItemComponent implements OnInit {
       if (data.addOn) {
         data.addOn = data.addOn;
       }
+
       let formData = new FormData();
       formData.append("data", JSON.stringify(data));
       formData.append("image", this.File);
-      this.api.addRestaurantFoodItem(formData).subscribe(res => {
+      this.api.addRestaurantFoodItem(formData).subscribe((res) => {
         if (res["response"]["success"]) {
           this.toastr.successToastr(res["response"]["message"]);
           this.router.navigate(["/restaurant/food-item"]);
@@ -205,7 +215,7 @@ export class AddFoodItemComponent implements OnInit {
       let formData = new FormData();
       formData.append("data", JSON.stringify(data));
       formData.append("image", this.File);
-      this.api.editRestaurantFoodItem(formData).subscribe(res => {
+      this.api.editRestaurantFoodItem(formData).subscribe((res) => {
         if (res["response"]["success"]) {
           this.toastr.successToastr(res["response"]["message"]);
           this.router.navigate(["/restaurant/food-item"]);

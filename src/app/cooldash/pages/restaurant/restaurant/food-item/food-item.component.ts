@@ -3,7 +3,7 @@ import {
   FormBuilder,
   FormGroup,
   Validators,
-  FormControl
+  FormControl,
 } from "@angular/forms";
 import { CommonService } from "../../../../services/common/common.service";
 import { ApiService } from "../../../../services/api/api.service";
@@ -15,12 +15,11 @@ import Swal from "sweetalert2";
 declare var google: any;
 
 @Component({
-  selector: 'app-food-item',
-  templateUrl: './food-item.component.html',
-  styleUrls: ['./food-item.component.scss']
+  selector: "app-food-item",
+  templateUrl: "./food-item.component.html",
+  styleUrls: ["./food-item.component.scss"],
 })
 export class FoodItemComponent implements OnInit {
-
   foodItem: any;
   id: any;
   totalItems: number;
@@ -32,7 +31,7 @@ export class FoodItemComponent implements OnInit {
   imageUrl: string;
   tokenVal;
   role: any;
-  searchText: string = '';
+  searchText: string = "";
   access: any;
   allData: any[];
   constructor(
@@ -42,22 +41,23 @@ export class FoodItemComponent implements OnInit {
     public toastr: ToastrManager,
     private router: Router,
     private route: ActivatedRoute,
-    private mapsAPILoader: MapsAPILoader, private dialogService: PopupService
-  ) { }
+    private mapsAPILoader: MapsAPILoader,
+    private dialogService: PopupService
+  ) {}
 
   ngOnInit() {
     this.imageUrl = this.comm.imageUrl;
     if (localStorage.getItem("restaurantLogin")) {
       var data = JSON.parse(localStorage.getItem("restaurantLogin"));
       if (data.id) {
-        this.id = data.id
+        this.id = data.id;
         this.getFoodItem(this.id);
       }
     }
   }
 
   getFoodItem(id) {
-    this.api.getRestaurantItemeById(id).subscribe(res => {
+    this.api.getRestaurantItemeById(id).subscribe((res) => {
       console.log(res);
       if (res["response"]["success"]) {
         this.foodItem = res["data"];
@@ -71,7 +71,7 @@ export class FoodItemComponent implements OnInit {
   }
 
   addCategory() {
-    this.router.navigate(['restaurant/add-food-item', this.id]);
+    this.router.navigate(["restaurant/add-food-item", this.id]);
     // this.dialogService.addRestaurantItem().subscribe(res => {
     //   if (res == "yes") {
     //     this.getFoodItem(this.id);
@@ -80,7 +80,7 @@ export class FoodItemComponent implements OnInit {
   }
 
   onEditSelect(item) {
-    this.router.navigate(['restaurant/add-food-item', this.id, item._id]);
+    this.router.navigate(["restaurant/add-food-item", this.id, item._id]);
   }
 
   deleteCategory(item) {
@@ -92,13 +92,13 @@ export class FoodItemComponent implements OnInit {
       confirmButtonColor: "#3085D6",
       cancelButtonColor: "#d33",
       confirmButtonText: "Yes",
-      allowOutsideClick: false
-    }).then(result => {
+      allowOutsideClick: false,
+    }).then((result) => {
       if (result.value) {
         var data = {
           name: item.name,
           updateId: item._id,
-          status: 2
+          status: 2,
         };
         let formData = new FormData();
         formData.append("data", JSON.stringify(data));
@@ -108,7 +108,7 @@ export class FoodItemComponent implements OnInit {
             Swal.fire({
               title: "Deleted!",
               text: res["response"]["message"],
-              icon: "success"
+              icon: "success",
             });
             this.getFoodItem(this.id);
           }
@@ -122,7 +122,7 @@ export class FoodItemComponent implements OnInit {
     var data = {
       name: item.name,
       updateId: item._id,
-      status: item.status ? 1 : 0
+      status: item.status ? 1 : 0,
     };
     let formData = new FormData();
     formData.append("data", JSON.stringify(data));
@@ -136,11 +136,13 @@ export class FoodItemComponent implements OnInit {
 
   searchItem() {
     this.foodItem = this.allData.filter(
-      row => row.name.toLowerCase().indexOf(this.searchText.toLowerCase()) > -1)
+      (row) =>
+        row.name.toLowerCase().indexOf(this.searchText.toLowerCase()) > -1
+    );
   }
 
   reset() {
-    this.searchText = ''
+    this.searchText = "";
     this.getFoodItem(this.id);
   }
 }
