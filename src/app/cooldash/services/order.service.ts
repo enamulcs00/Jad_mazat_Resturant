@@ -4,7 +4,7 @@ import { CommonService } from "./common/common.service";
 import { Observable } from "rxjs";
 
 @Injectable({
-  providedIn: "root"
+  providedIn: "root",
 })
 export class OrderService {
   socket;
@@ -13,51 +13,50 @@ export class OrderService {
     this.socket = io(comm.imageUrl, {
       reconnection: true,
       reconnectionDelay: 30000,
-      reconnectionDelayMax : 60000,
-      reconnectionAttempts: Infinity
+      reconnectionDelayMax: 60000,
+      reconnectionAttempts: Infinity,
     });
-
   }
 
   orderAccept(order) {
+    alert("HERE");
     this.socket.emit("acceptOrder", order);
   }
 
   changeStatus(order) {
     this.socket.emit("adminChangeStatus", order);
-    this.socket.removeListener('adminChangeStatus');
+    this.socket.removeListener("adminChangeStatus");
     return Observable.create((observer) => {
-      this.socket.on('adminChangeStatus', (message) => {
-        observer.next(message);
-      })
-    });
-  }
-
-  orderListener() {
-    return Observable.create(observer => {
-      this.socket.removeListener('acceptOrder');
-      this.socket.on("acceptOrder", message => {
+      this.socket.on("adminChangeStatus", (message) => {
         observer.next(message);
       });
     });
   }
 
-  statusCahnegListener(){
-    return Observable.create(observer => {
-      this.socket.removeListener('adminCheckChange');
-      this.socket.on("adminCheckChange", message => {
+  orderListener() {
+    return Observable.create((observer) => {
+      this.socket.removeListener("acceptOrder");
+      this.socket.on("acceptOrder", (message) => {
+        observer.next(message);
+      });
+    });
+  }
+
+  statusCahnegListener() {
+    return Observable.create((observer) => {
+      this.socket.removeListener("adminCheckChange");
+      this.socket.on("adminCheckChange", (message) => {
         observer.next(message);
       });
     });
   }
 
   newRestaurtOrder() {
-    return Observable.create(observer => {
-      this.socket.removeListener('restaurantOrder');
-      this.socket.on("restaurantOrder", message => {
+    return Observable.create((observer) => {
+      this.socket.removeListener("restaurantOrder");
+      this.socket.on("restaurantOrder", (message) => {
         observer.next(message);
       });
     });
   }
-
 }
