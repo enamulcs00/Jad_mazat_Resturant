@@ -1508,6 +1508,9 @@ __webpack_require__.r(__webpack_exports__);
 // import { ApiService } from "../api/api.service";
 
 let CommonService = class CommonService {
+    // Local Url For Testing
+    // baseUrl = "http://192.168.1.158:9079/v1/admin";
+    // imageUrl = "http://192.168.1.158:9079";
     // https://appgrowthcompany.com:3000/
     //http://192.168.1.98:3000
     constructor(spinner, toaster, 
@@ -1537,11 +1540,8 @@ let CommonService = class CommonService {
             itemsShowLimit: 3,
             allowSearchFilter: true,
         };
-        // baseUrl = "http://13.233.12.201:9079/v1/admin";
-        // imageUrl = "http://13.233.12.201:9079";
-        // Local Url For Testing
-        this.baseUrl = "http://192.168.1.158:9079/v1/admin";
-        this.imageUrl = "http://192.168.1.158:9079";
+        this.baseUrl = "http://13.233.12.201:9079/v1/admin";
+        this.imageUrl = "http://13.233.12.201:9079";
     }
     showSpinner() {
         this.spinner.show();

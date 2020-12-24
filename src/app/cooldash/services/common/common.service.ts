@@ -30,13 +30,13 @@ export class CommonService {
     allowSearchFilter: true,
   };
 
-  // baseUrl = "http://13.233.12.201:9079/v1/admin";
-  // imageUrl = "http://13.233.12.201:9079";
+  baseUrl = "http://13.233.12.201:9079/v1/admin";
+  imageUrl = "http://13.233.12.201:9079";
 
   // Local Url For Testing
 
-  baseUrl = "http://192.168.1.158:9079/v1/admin";
-  imageUrl = "http://192.168.1.158:9079";
+  // baseUrl = "http://192.168.1.158:9079/v1/admin";
+  // imageUrl = "http://192.168.1.158:9079";
 
   // https://appgrowthcompany.com:3000/
   //http://192.168.1.98:3000

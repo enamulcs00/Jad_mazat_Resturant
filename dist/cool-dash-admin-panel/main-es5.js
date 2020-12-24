@@ -2410,6 +2410,9 @@
 
 
     let CommonService = class CommonService {
+      // Local Url For Testing
+      // baseUrl = "http://192.168.1.158:9079/v1/admin";
+      // imageUrl = "http://192.168.1.158:9079";
       // https://appgrowthcompany.com:3000/
       //http://192.168.1.98:3000
       constructor(spinner, toaster, // private api: ApiService,
@@ -2437,12 +2440,9 @@
           unSelectAllText: "UnSelect All",
           itemsShowLimit: 3,
           allowSearchFilter: true
-        }; // baseUrl = "http://13.233.12.201:9079/v1/admin";
-        // imageUrl = "http://13.233.12.201:9079";
-        // Local Url For Testing
-
-        this.baseUrl = "http://192.168.1.158:9079/v1/admin";
-        this.imageUrl = "http://192.168.1.158:9079";
+        };
+        this.baseUrl = "http://13.233.12.201:9079/v1/admin";
+        this.imageUrl = "http://13.233.12.201:9079";
       }
 
       showSpinner() {
