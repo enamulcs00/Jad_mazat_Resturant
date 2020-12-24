@@ -8,7 +8,12 @@
           <div class="usr_profile_biodata">
             <label>Category Name</label>
             <div class="input-group">
-              <input class="form-control" type="text" name="name" formControlName="name" />
+              <input
+                class="form-control"
+                type="text"
+                name="name"
+                formControlName="name"
+              />
             </div>
           </div>
         </div>
@@ -20,12 +25,19 @@
               <label>Image</label>
               <div class="user_img">
                 <figure *ngIf="categoryImage">
-                  <img style="height: 50px;width: 50px" [src]="categoryImage" />
+                  <img
+                    style="height: 50px; width: 50px"
+                    [src]="categoryImage"
+                  />
                 </figure>
               </div>
             </div>
             <div class="user_profile_edit">
-              <input type="file" accept="image/*" (change)="profilePic($event)" />
+              <input
+                type="file"
+                accept="image/*"
+                (change)="profilePic($event)"
+              />
             </div>
           </div>
         </div>
@@ -34,11 +46,18 @@
   </form>
 </mat-dialog-content>
 <mat-dialog-actions>
-
-  <button class="mat-raised-button mat-primary mr-3" *ngIf="!item" (click)="onSubmit()">
+  <button
+    class="mat-raised-button mat-primary mr-3"
+    *ngIf="!item"
+    (click)="onSubmit()"
+  >
     Add Category
   </button>
-  <button class="mat-raised-button mat-primary mr-3" *ngIf="item" (click)="onUpdate()">
+  <button
+    class="mat-raised-button mat-primary mr-3"
+    *ngIf="item"
+    (click)="onUpdate()"
+  >
     Edit Category
   </button>
   <button class="mat-raised-button" (click)="close()">Close</button>

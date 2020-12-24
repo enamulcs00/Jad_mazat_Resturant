@@ -71,7 +71,12 @@ export class AddFoodItemComponent implements OnInit {
     });
     this.restaurantForm = this.formBuilder.group({
       name: new FormControl("", Validators.compose([Validators.required])),
+      name_ar: new FormControl("", Validators.compose([Validators.required])),
       description: new FormControl(
+        "",
+        Validators.compose([Validators.required, Validators.maxLength(250)])
+      ),
+      description_ar: new FormControl(
         "",
         Validators.compose([Validators.required, Validators.maxLength(250)])
       ),
@@ -165,9 +170,11 @@ export class AddFoodItemComponent implements OnInit {
     if (data) {
       this.restaurantForm.patchValue({
         name: data.name,
+        name_ar: data.name_ar,
         description: data.description,
+        description_ar: data.description_ar,
         foodTypeId: data.foodTypeId,
-        // discount: data.discount,
+        discount: data.discount,
         price: data.price,
         preprationTime: data.preprationTime,
         foodCategoryId: data.foodCategoryId,

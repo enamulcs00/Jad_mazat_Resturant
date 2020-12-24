@@ -4,7 +4,7 @@ import {
   FormBuilder,
   FormGroup,
   Validators,
-  FormControl
+  FormControl,
 } from "@angular/forms";
 import { CommonService } from "../../../../../services/common/common.service";
 import { ApiService } from "../../../../../services/api/api.service";
@@ -12,12 +12,11 @@ import { ToastrManager } from "ng6-toastr-notifications";
 
 declare var $: any;
 @Component({
-  selector: 'app-restaurant-type-modal',
-  templateUrl: './restaurant-type-modal.component.html',
-  styleUrls: ['./restaurant-type-modal.component.scss']
+  selector: "app-restaurant-type-modal",
+  templateUrl: "./restaurant-type-modal.component.html",
+  styleUrls: ["./restaurant-type-modal.component.scss"],
 })
 export class RestaurantTypeModalComponent implements OnInit {
-
   categoryForm: FormGroup;
   categoryImage: any;
   File;
@@ -31,11 +30,14 @@ export class RestaurantTypeModalComponent implements OnInit {
     public comm: CommonService,
     public api: ApiService,
     public toastr: ToastrManager
-  ) { }
+  ) {}
 
   ngOnInit() {
+    this.restaurantId = localStorage.getItem("id");
+
     this.categoryForm = this.formBuilder.group({
-      name: new FormControl("", Validators.compose([Validators.required]))
+      name: new FormControl("", Validators.compose([Validators.required])),
+      name_ar: new FormControl("", Validators.compose([Validators.required])),
     });
     if (this.item) {
       this.setValues();
@@ -45,7 +47,8 @@ export class RestaurantTypeModalComponent implements OnInit {
   setValues = () => {
     if (this.item) {
       this.categoryForm.patchValue({
-        name: this.item.name
+        name: this.item.name,
+        name_ar: this.item.name_ar,
       });
     }
   };
@@ -55,9 +58,10 @@ export class RestaurantTypeModalComponent implements OnInit {
     if (this.categoryForm.valid && this.submitted) {
       var data = {
         name: this.categoryForm.controls["name"].value,
-        restaurantId: this.restaurantId
+        name_ar: this.categoryForm.controls["name_ar"].value,
+        restaurantId: this.restaurantId,
       };
-      this.api.addRestaurantFoodType(data).subscribe(res => {
+      this.api.addRestaurantFoodType(data).subscribe((res) => {
         if (res["response"]["success"]) {
           this.toastr.successToastr(res["response"]["message"]);
           this.dialog.close("yes");
@@ -82,10 +86,11 @@ export class RestaurantTypeModalComponent implements OnInit {
     if (this.categoryForm.valid && this.submitted) {
       var data = {
         name: this.categoryForm.controls["name"].value,
+        name_ar: this.categoryForm.controls["name_ar"].value,
         updateId: this.item._id,
-        restaurantId: this.item.restaurantId
+        restaurantId: this.item.restaurantId,
       };
-      this.api.editRestaurantFoodType(data).subscribe(res => {
+      this.api.editRestaurantFoodType(data).subscribe((res) => {
         if (res["response"]["success"]) {
           this.toastr.successToastr(res["response"]["message"]);
           this.dialog.close("yes");
