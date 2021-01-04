@@ -1,4 +1,4 @@
-import { NgModule } from "@angular/core";
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { CoolDashRoutingModule } from "./cooldash-routing.module";
 import { CoolDashComponent } from "./cooldash.component";
@@ -9,8 +9,21 @@ import { SidebarComponent } from "./components/sidebar/sidebar.component";
 import { FormsModule } from "@angular/forms";
 import { DashboardComponent } from "./pages/dashboard/dashboard.component";
 import { MaterialModule } from "./pages/material/material.module";
-import { ChangePasswordComponent } from './pages/change-password/change-password.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ChangePasswordComponent } from "./pages/change-password/change-password.component";
+import { ReactiveFormsModule } from "@angular/forms";
+
+import { FusionChartsModule } from "angular-fusioncharts";
+
+// Load FusionCharts
+import * as FusionCharts from "fusioncharts";
+// Load Charts module
+import * as Charts from "fusioncharts/fusioncharts.charts";
+// Load fusion theme
+import * as FusionTheme from "fusioncharts/themes/fusioncharts.theme.fusion";
+import * as TimeSeries from "fusioncharts/fusioncharts.timeseries"; // Import timeseries
+
+// Add dependencies to FusionChartsModule
+FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme, TimeSeries);
 
 @NgModule({
   declarations: [
@@ -20,7 +33,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     HeaderComponent,
     SidebarComponent,
     DashboardComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
   ],
   exports: [],
   imports: [
@@ -28,7 +41,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     CoolDashRoutingModule,
     MaterialModule,
-    ReactiveFormsModule
-  ]
+    // FusionChartsModule,
+    ReactiveFormsModule,
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class CoolDashModule { }
+export class CoolDashModule {}

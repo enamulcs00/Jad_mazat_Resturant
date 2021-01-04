@@ -193,8 +193,8 @@ export class AddFoodItemComponent implements OnInit {
     this.restaurantForm.controls["restaurantId"].setValue(this.id);
     if (this.submitted && this.restaurantForm.valid) {
       var data = this.restaurantForm.value;
-      if (data.addOn) {
-        data.addOn = data.addOn;
+      if (data.addOn == "") {
+        data.addOn = [];
       }
 
       let formData = new FormData();

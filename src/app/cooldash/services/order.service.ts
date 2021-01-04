@@ -19,7 +19,6 @@ export class OrderService {
   }
 
   orderAccept(order) {
-    alert("HERE");
     this.socket.emit("acceptOrder", order);
   }
 

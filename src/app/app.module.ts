@@ -1,6 +1,10 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { NgModule } from "@angular/core";
+import {
+  NgModule,
+  CUSTOM_ELEMENTS_SCHEMA,
+  NO_ERRORS_SCHEMA,
+} from "@angular/core";
 import { HttpClientModule } from "@angular/common/http";
 import { NgxSpinnerModule } from "ngx-spinner";
 import "hammerjs";
@@ -21,8 +25,9 @@ import { GooglePlaceModule } from "ngx-google-places-autocomplete";
 import { AgmCoreModule } from "@agm/core";
 import { AgmDirectionModule } from "agm-direction";
 import { OutletmodalComponent } from "./cooldash/pages/restaurant/restaurant/outletmodal/outletmodal.component";
-import { RestaurantTypeModalComponent } from './cooldash/pages/restaurant/restaurant/food-type/restaurant-type-modal/restaurant-type-modal.component';
-import { ForgotPasswordModalComponent } from './forgot-password-modal/forgot-password-modal.component';
+import { RestaurantTypeModalComponent } from "./cooldash/pages/restaurant/restaurant/food-type/restaurant-type-modal/restaurant-type-modal.component";
+import { ForgotPasswordModalComponent } from "./forgot-password-modal/forgot-password-modal.component";
+// import { FusionChartsModule } from "angular-fusioncharts";
 
 @NgModule({
   declarations: [
@@ -32,7 +37,7 @@ import { ForgotPasswordModalComponent } from './forgot-password-modal/forgot-pas
     AcceptModalComponent,
     OutletmodalComponent,
     RestaurantTypeModalComponent,
-    ForgotPasswordModalComponent
+    ForgotPasswordModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,13 +50,14 @@ import { ForgotPasswordModalComponent } from './forgot-password-modal/forgot-pas
     NgxSpinnerModule,
     MaterialModule,
     FormsModule,
+    // FusionChartsModule,
     ReactiveFormsModule,
     AgmDirectionModule,
     GooglePlaceModule,
     AgmCoreModule.forRoot({
       apiKey: "AIzaSyCudljC7a_B3udFOKv1YiY2N190wrRRVAw",
-      libraries: ["geometry", "places"]
-    })
+      libraries: ["geometry", "places"],
+    }),
   ],
   providers: [AuthGuard, AuthguardGuardGuard, OrderService],
   bootstrap: [AppComponent],
@@ -61,7 +67,8 @@ import { ForgotPasswordModalComponent } from './forgot-password-modal/forgot-pas
     AcceptModalComponent,
     OutletmodalComponent,
     RestaurantTypeModalComponent,
-    ForgotPasswordModalComponent
-  ]
+    ForgotPasswordModalComponent,
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
 })
-export class AppModule { }
+export class AppModule {}

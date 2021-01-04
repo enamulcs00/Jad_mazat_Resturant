@@ -6,7 +6,7 @@ import { map } from "rxjs/operators";
 import { CommonService } from "../common/common.service";
 
 @Injectable({
-  providedIn: "root"
+  providedIn: "root",
 })
 export class ApiService {
   countryCode: any;
@@ -22,16 +22,16 @@ export class ApiService {
   getCountryCode() {
     return this.http
       .get<Response>("assets/json/countryCode.json")
-      .pipe(map(response => response));
+      .pipe(map((response) => response));
   }
 
   singIn(body: LoginBody) {
     return this.http.post(this.comm.baseUrl + "/panel/login", body);
   }
- 
-  forgotPasswordSendEmail(body){
-    return this.http.post(this.comm.baseUrl + "/panel/forgotpass",body)
-  }  
+
+  forgotPasswordSendEmail(body) {
+    return this.http.post(this.comm.baseUrl + "/panel/forgotpass", body);
+  }
 
   sendToken(token: string) {
     localStorage.setItem("token", token);
@@ -84,15 +84,19 @@ export class ApiService {
 
   getPendingOrders(status, page, id) {
     return this.http.get(
-      this.comm.baseUrl + "/food/orders?status=" + status + "&page=" + page + "&restaurantId=" + id
+      this.comm.baseUrl +
+        "/food/orders?status=" +
+        status +
+        "&page=" +
+        page +
+        "&restaurantId=" +
+        id
     );
   }
-
 
   getOutletById(id) {
     return this.http.get(this.comm.baseUrl + "/food/restaurant/outlet/" + id);
   }
-
 
   addRestaurantOutlet(body) {
     return this.http.post(this.comm.baseUrl + "/food/restaurant/outlet", body);
@@ -101,7 +105,6 @@ export class ApiService {
   editRestaurantOutlet(body) {
     return this.http.put(this.comm.baseUrl + "/food/restaurant/outlet", body);
   }
-
 
   getRestaurantTypeById(id) {
     return this.http.get(this.comm.baseUrl + "/food/type/" + id);
@@ -135,26 +138,33 @@ export class ApiService {
   }
 
   getAddOns(id) {
-    return this.http.get(this.comm.baseUrl + '/getAddOns/' + id);
+    return this.http.get(this.comm.baseUrl + "/getAddOns/" + id);
   }
 
   getAddOnById(id) {
-    return this.http.get(this.comm.baseUrl + '/getAddOnById/'  + id);
+    return this.http.get(this.comm.baseUrl + "/getAddOnById/" + id);
   }
 
   addAddOn(body) {
-    return this.http.post(this.comm.baseUrl + '/addOns', body);
+    return this.http.post(this.comm.baseUrl + "/addOns", body);
   }
 
   deleteAddOn(id) {
-    return this.http.delete(this.comm.baseUrl + '/deleteAddOns/' + id);
+    return this.http.delete(this.comm.baseUrl + "/deleteAddOns/" + id);
   }
 
   activeInactiveAddOn(body) {
-    return this.http.put(this.comm.baseUrl + '/addOns', body);
+    return this.http.put(this.comm.baseUrl + "/addOns", body);
   }
 
   editAddOn(body) {
-    return this.http.put(this.comm.baseUrl + '/addOns', body);
+    return this.http.put(this.comm.baseUrl + "/addOns", body);
+  }
+
+  getRestaurantRevenue(id) {
+    console.log(id);
+    return this.http.get(
+      this.comm.baseUrl + "/food/revenue/restaurant/?restaurantId=" + id
+    );
   }
 }

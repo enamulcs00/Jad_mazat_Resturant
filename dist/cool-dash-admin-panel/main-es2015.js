@@ -1605,7 +1605,6 @@ let OrderService = class OrderService {
         });
     }
     orderAccept(order) {
-        alert("HERE");
         this.socket.emit("acceptOrder", order);
     }
     changeStatus(order) {
