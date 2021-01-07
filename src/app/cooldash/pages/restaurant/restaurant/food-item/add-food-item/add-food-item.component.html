@@ -13,10 +13,7 @@
               </h6>
             </div>
             <div class="col-md-6 text-right">
-              <button
-                class="btn btn-primary btn-primary_border"
-                (click)="history.back()"
-              >
+              <button class="btn btn-primary btn-primary_border" (click)="history.back()">
                 <span class="fas fa-arrow-left"></span> Back
               </button>
             </div>
@@ -30,44 +27,26 @@
           <div class="form-group col-md-6">
             <label for="title">Name </label>
             <div class="input-group">
-              <input
-                type="text"
-                id="name"
-                class="form-control"
-                formControlName="name"
-                placeholder=""
-              />
+              <input type="text" id="name" class="form-control" formControlName="name" placeholder="" />
             </div>
-            <div
-              *ngIf="submitted && restaurantForm.controls.name.errors"
-              class="invalid-feedback"
-            >
+            <div *ngIf="submitted && restaurantForm.controls.name.errors" class="invalid-feedback">
               <div *ngIf="restaurantForm.controls.name.errors.required">
                 Name is required
               </div>
             </div>
           </div>
-
+          <!-- 
           <div class="form-group col-md-6">
             <label for="title"><strong>اسم </strong></label>
             <div class="input-group">
-              <input
-                type="text"
-                id="name"
-                class="form-control"
-                formControlName="name_ar"
-                placeholder=""
-              />
+              <input type="text" id="name" class="form-control" formControlName="name_ar" placeholder="" />
             </div>
-            <div
-              *ngIf="submitted && restaurantForm.controls.name.errors"
-              class="invalid-feedback"
-            >
+            <div *ngIf="submitted && restaurantForm.controls.name.errors" class="invalid-feedback">
               <div *ngIf="restaurantForm.controls.name.errors.required">
                 Name is required
               </div>
             </div>
-          </div>
+          </div> -->
 
           <div class="form-group col-md-6">
             <label for="types">Type of Food</label>
@@ -78,10 +57,7 @@
                   {{ data.name }}
                 </option>
               </select>
-              <div
-                *ngIf="submitted && restaurantForm.controls.type.errors"
-                class="invalid-feedback"
-              >
+              <div *ngIf="submitted && restaurantForm.controls.type.errors" class="invalid-feedback">
                 <div *ngIf="restaurantForm.controls.type.errors.required">
                   Type of Food is required
                 </div>
@@ -93,78 +69,42 @@
           <div class="form-group col-md-12">
             <label for="body">Description</label>
             <div class="input-group">
-              <textarea
-                type="text"
-                row="3"
-                id="body"
-                class="form-control"
-                formControlName="description"
-                placeholder=""
-              ></textarea>
-              <div
-                *ngIf="submitted && restaurantForm.controls.description.errors"
-                class="invalid-feedback"
-              >
-                <div
-                  *ngIf="restaurantForm.controls.description.errors.required"
-                >
+              <textarea type="text" row="3" id="body" class="form-control" formControlName="description"
+                placeholder=""></textarea>
+              <div *ngIf="submitted && restaurantForm.controls.description.errors" class="invalid-feedback">
+                <div *ngIf="restaurantForm.controls.description.errors.required">
                   Description is required
                 </div>
-                <div
-                  *ngIf="restaurantForm.controls.description.errors.maxlength"
-                >
+                <div *ngIf="restaurantForm.controls.description.errors.maxlength">
                   Description can be max 250 characters long.
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="row">
+        <!-- <div class="row">
           <div class="form-group col-md-12">
             <label for="body">وصف</label>
             <div class="input-group">
-              <textarea
-                type="text"
-                row="3"
-                id="body"
-                class="form-control"
-                formControlName="description_ar"
-                placeholder=""
-              ></textarea>
-              <div
-                *ngIf="submitted && restaurantForm.controls.description.errors"
-                class="invalid-feedback"
-              >
-                <div
-                  *ngIf="restaurantForm.controls.description.errors.required"
-                >
+              <textarea type="text" row="3" id="body" class="form-control" formControlName="description_ar"
+                placeholder=""></textarea>
+              <div *ngIf="submitted && restaurantForm.controls.description.errors" class="invalid-feedback">
+                <div *ngIf="restaurantForm.controls.description.errors.required">
                   Description is required
                 </div>
-                <div
-                  *ngIf="restaurantForm.controls.description.errors.maxlength"
-                >
+                <div *ngIf="restaurantForm.controls.description.errors.maxlength">
                   Description can be max 250 characters long.
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
         <div class="row">
           <div class="form-group col-md-6">
             <label for="price">Price</label>
             <div class="input-group">
-              <input
-                type="number"
-                min="0"
-                id="discount"
-                class="form-control"
-                formControlName="price"
-                placeholder=""
-              />
-              <div
-                *ngIf="submitted && restaurantForm.controls.price.errors"
-                class="invalid-feedback"
-              >
+              <input type="number" min="0" id="discount" class="form-control" formControlName="price" placeholder="" />
+              <div *ngIf="submitted && restaurantForm.controls.price.errors" class="invalid-feedback">
                 <div *ngIf="restaurantForm.controls.price.errors.required">
                   Price is required
                 </div>
@@ -175,65 +115,32 @@
             </div>
           </div>
           <div class="form-group col-md-6">
-            <label for="price"
-              >Preparation Time<small> (In Minutes)</small></label
-            >
+            <label for="price">Preparation Time<small> (In Minutes)</small></label>
             <div class="input-group">
-              <input
-                type="text"
-                id="preprationTime"
-                class="form-control"
-                formControlName="preprationTime"
-                placeholder=""
-              />
-              <div
-                *ngIf="
+              <input type="text" id="preprationTime" class="form-control" formControlName="preprationTime"
+                placeholder="" />
+              <div *ngIf="
                   submitted && restaurantForm.controls.preprationTime.errors
-                "
-                class="invalid-feedback"
-              >
-                <div
-                  *ngIf="restaurantForm.controls.preprationTime.errors.required"
-                >
+                " class="invalid-feedback">
+                <div *ngIf="restaurantForm.controls.preprationTime.errors.required">
                   Preparation Time is required
                 </div>
               </div>
             </div>
           </div>
-          <!-- <div class="form-group col-md-6">
-            <label for="price">Discount</label>
-            <div class="input-group">
-              <input type="number" min="0" id="discount" class="form-control" formControlName="discount"
-                placeholder="" />
-              <div *ngIf="submitted && restaurantForm.controls.discount.errors" class="invalid-feedback">
-                <div *ngIf="restaurantForm.controls.discount.errors.required">
-                  Discount is required
-                </div>
-                <div *ngIf="restaurantForm.controls.discount.errors.pattern">
-                  Discount is not valid
-                </div>
-              </div>
-            </div>
-          </div> -->
+
         </div>
         <div class="row">
           <div class="form-group col-md-6">
             <label for="types">Food Category</label>
             <div class="input-group">
-              <select
-                class="form-control"
-                formControlName="foodTypeId"
-                *ngIf="foodType"
-              >
+              <select class="form-control" formControlName="foodTypeId" *ngIf="foodType">
                 <option value="" selected disabled hidden>Choose here</option>
                 <option *ngFor="let type of foodType" [value]="type._id">
                   {{ type.name }}
                 </option>
               </select>
-              <div
-                *ngIf="submitted && restaurantForm.controls.foodTypeId.errors"
-                class="invalid-feedback"
-              >
+              <div *ngIf="submitted && restaurantForm.controls.foodTypeId.errors" class="invalid-feedback">
                 <div *ngIf="restaurantForm.controls.foodTypeId.errors.required">
                   Food Category is required
                 </div>
@@ -242,29 +149,17 @@
           </div>
           <div class="form-group col-md-6">
             <label for="category">Restaurant Category</label>
-            <div
-              class="input-group"
-              *ngIf="categoryList && categoryList.length > 0"
-            >
-              <select
-                class="form-control"
-                formControlName="foodCategoryId"
-                *ngIf="foodType"
-              >
+            <div class="input-group" *ngIf="categoryList && categoryList.length > 0">
+              <select class="form-control" formControlName="foodCategoryId" *ngIf="foodType">
                 <option value="" selected disabled hidden>Choose here</option>
                 <option *ngFor="let type of categoryList" [value]="type._id">
                   {{ type.name }}
                 </option>
               </select>
-              <div
-                *ngIf="
+              <div *ngIf="
                   submitted && restaurantForm.controls.foodCategoryId.errors
-                "
-                class="invalid-feedback"
-              >
-                <div
-                  *ngIf="restaurantForm.controls.foodCategoryId.errors.required"
-                >
+                " class="invalid-feedback">
+                <div *ngIf="restaurantForm.controls.foodCategoryId.errors.required">
                   Restaurant Category is required
                 </div>
               </div>
@@ -272,40 +167,41 @@
           </div>
         </div>
         <div class="row">
-          <div
-            class="form-group col-md-6 add_resurant"
-            *ngIf="addOnsList && addOnsList.length"
-          >
-            <label for="category">Add Ons</label>
-            <div class="">
-              <ng-multiselect-dropdown
-                placeholder="Select Add On"
-                [data]="addOnsList"
-                formControlName="addOn"
-                [settings]="dropDownSetting"
-              >
-              </ng-multiselect-dropdown>
+          <div class="form-group col-md-6">
+            <label for="price">Quantity</label>
+            <div class="input-group">
+              <input type="number" min="0" id="discount" class="form-control" formControlName="qunatity"
+                placeholder="" />
+              <div *ngIf="submitted && restaurantForm.controls.qunatity.errors" class="invalid-feedback">
+                <div *ngIf="restaurantForm.controls.qunatity.errors.required">
+                  Quantity is required
+                </div>
+                <div *ngIf="restaurantForm.controls.qunatity.errors.pattern">
+                  Quantity is not valid
+                </div>
+              </div>
             </div>
           </div>
+          <!-- <div class="form-group col-md-6 add_resurant" *ngIf="addOnsList && addOnsList.length">
+            <label for="category">Add Ons</label>
+            <div class="">
+              <ng-multiselect-dropdown placeholder="Select Add On" [data]="addOnsList" formControlName="addOn"
+                [settings]="dropDownSetting">
+              </ng-multiselect-dropdown>
+            </div>
+          </div> -->
           <div class="form-group col-md-6">
             <div class="usr_profile_img">
               <div class="usr_profile_imgbx">
                 <label>Image</label>
                 <div class="user_img">
                   <figure *ngIf="categoryImage">
-                    <img
-                      style="height: 150px; width: 150px"
-                      [src]="categoryImage"
-                    />
+                    <img style="height: 150px; width: 150px" [src]="categoryImage" />
                   </figure>
                 </div>
               </div>
               <div class="user_profile_edit">
-                <input
-                  type="file"
-                  accept="image/*"
-                  (change)="profilePic($event)"
-                />
+                <input type="file" accept="image/*" (change)="profilePic($event)" />
               </div>
               <div *ngIf="submitted && !categoryImage" class="invalid-feedback">
                 Image is required
@@ -314,20 +210,10 @@
           </div>
         </div>
         <div class="form-group form-actions add_edit">
-          <button
-            type="submit"
-            class="btn btn-sm btn-success"
-            *ngIf="!itemId"
-            (click)="submit()"
-          >
+          <button type="submit" class="btn btn-sm btn-success" *ngIf="!itemId" (click)="submit()">
             Add
           </button>
-          <button
-            type="submit"
-            class="btn btn-sm btn-success"
-            *ngIf="itemId"
-            (click)="update()"
-          >
+          <button type="submit" class="btn btn-sm btn-success" *ngIf="itemId" (click)="update()">
             Update
           </button>
         </div>

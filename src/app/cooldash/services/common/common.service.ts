@@ -30,8 +30,8 @@ export class CommonService {
     allowSearchFilter: true,
   };
 
-  baseUrl = "http://13.233.12.201:9079/v1/admin";
-  imageUrl = "http://13.233.12.201:9079";
+  baseUrl = "http://13.233.12.201:9029/v1/admin";
+  imageUrl = "http://13.233.12.201:9029";
 
   // Local Url For Testing
 
@@ -45,7 +45,7 @@ export class CommonService {
     private toaster: ToastrManager,
     // private api: ApiService,
     private http: HttpClient
-  ) {}
+  ) { }
   showSpinner() {
     this.spinner.show();
   }

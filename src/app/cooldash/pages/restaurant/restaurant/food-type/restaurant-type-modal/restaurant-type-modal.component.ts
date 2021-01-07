@@ -30,14 +30,14 @@ export class RestaurantTypeModalComponent implements OnInit {
     public comm: CommonService,
     public api: ApiService,
     public toastr: ToastrManager
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.restaurantId = localStorage.getItem("id");
 
     this.categoryForm = this.formBuilder.group({
       name: new FormControl("", Validators.compose([Validators.required])),
-      name_ar: new FormControl("", Validators.compose([Validators.required])),
+      name_ar: new FormControl("notUsable"),
     });
     if (this.item) {
       this.setValues();

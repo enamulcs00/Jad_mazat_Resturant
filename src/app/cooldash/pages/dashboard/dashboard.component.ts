@@ -91,17 +91,17 @@ export class DashboardComponent implements OnInit {
     let id = localStorage.getItem("id");
     this.api.getRestaurantRevenue(id).subscribe((response: any) => {
       console.log(response);
-      // var dataFetch = response.data;
-      // Promise.all([dataFetch, schemaFetch]).then((res) => {
-      //   const [data, schema] = res;
-      //   // First we are creating a DataStore
-      //   const fusionDataStore = new FusionCharts.DataStore();
-      //   // After that we are creating a DataTable by passing our data and schema as arguments
-      //   const fusionTable = fusionDataStore.createDataTable(data, schema);
-      //   // Afet that we simply mutated our timeseries datasource by attaching the above
-      //   // DataTable into its data property.
-      //   this.dataSource.data = fusionTable;
-      // });
+      var dataFetch = response.data;
+      Promise.all([dataFetch, schemaFetch]).then((res) => {
+        const [data, schema] = res;
+        // First we are creating a DataStore
+        const fusionDataStore = new FusionCharts.DataStore();
+        // After that we are creating a DataTable by passing our data and schema as arguments
+        const fusionTable = fusionDataStore.createDataTable(data, schema);
+        // Afet that we simply mutated our timeseries datasource by attaching the above
+        // DataTable into its data property.
+        this.dataSource.data = fusionTable;
+      });
     });
   }
 }
