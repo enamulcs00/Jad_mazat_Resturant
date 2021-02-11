@@ -87,7 +87,7 @@ export class LoginComponent implements OnInit {
                 "Reset password link sent successfully"
               );
             } else {
-              this.toastr.errorToastr(response["response"]["message"]);
+              this.toastr.errorToastr('This email not registered with any account');
             }
           });
         }

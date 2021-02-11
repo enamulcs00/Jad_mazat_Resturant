@@ -4,8 +4,8 @@ import { Injectable } from "@angular/core";
   providedIn: "root"
 })
 export class UrlService {
-  baseUrl = "http://192.168.1.98:3000/v1/admin";
-  imageUrl = "http://192.168.1.98:3000";
+  baseUrl = "http://15.207.74.128:3000/v1/admin";
+  imageUrl = "http://15.207.74.128:3000";
 
   constructor() {}
   login = `${this.baseUrl}/login`;

@@ -17,6 +17,7 @@ export class OrderComponent implements OnInit {
   totalItems: number;
   currentPage = 1;
   serialNumber = 0;
+  totalmatch:any;
   loader: boolean = true;
   orderList: Array<any> = [];
   imageUrl: string;
@@ -28,6 +29,8 @@ export class OrderComponent implements OnInit {
     itemsPerPage: 25,
   };
   status: string = "pending";
+  show: boolean;
+  statuscode: any;
   constructor(
     private api: ApiService,
     private comm: CommonService,
@@ -96,7 +99,7 @@ export class OrderComponent implements OnInit {
   pendingOrder() {
     this.status = "pending";
     this.comm.orderStatus = this.status;
-    var status = 0;
+    var status = this.statuscode;
     var page = this.currentPage;
     this.api.getPendingOrders(status, page, this.id).subscribe((response) => {
       if (response["response"]["success"]) {
@@ -111,6 +114,19 @@ export class OrderComponent implements OnInit {
       }
       if (!response["success"]) return;
     });
+  }
+
+
+  changeMatchWebsite(event)
+  {
+  if(event.target.value == '0') {
+    this.show = true;
+  }else{
+    this.show = false;
+  }
+ console.log('change',event.target.value)
+ this.statuscode = event.target.value;
+ this.pendingOrder()
   }
 
   orderAccept(item) {

@@ -98,7 +98,7 @@ export class AddFoodItemComponent implements OnInit {
         "",
         Validators.compose([Validators.required])
       ),
-      qunatity: new FormControl(
+      quantity: new FormControl(
         "",
         Validators.compose([Validators.required])
       ),

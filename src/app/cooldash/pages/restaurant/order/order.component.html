@@ -7,20 +7,14 @@
             <h6 class="m-0 text-black">Order</h6>
           </div>
           <div class="user_add_button">
-            <button
-              class="btn btn-primary mr-3"
-              (click)="allOrder()"
-              [ngClass]="{ 'btn-highlight': status == 'all' }"
-            >
-              All Orders
-            </button>
-            <button
-              class="btn btn-primary btn-primary_border"
-              (click)="pendingOrder()"
-              [ngClass]="{ 'btn-highlight': status == 'pending' }"
-            >
-              Pending Orders
-            </button>
+            <select [(ngModel)]="totalmatch" class="form-control" (change)="changeMatchWebsite($event)">
+              <option value="undefined">All</option>
+              <option value="0">Pending</option>
+              <option value="1">Current/Ongoing</option>
+              <option value="11">undelivered/returned</option>
+              <option value="4">Delivered/Skip</option>
+              <option value="7">Payment received</option>
+          </select>
           </div>
         </div>
       </div>

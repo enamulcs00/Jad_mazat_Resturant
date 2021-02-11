@@ -170,13 +170,13 @@
           <div class="form-group col-md-6">
             <label for="price">Quantity</label>
             <div class="input-group">
-              <input type="number" min="0" id="discount" class="form-control" formControlName="qunatity"
+              <input type="number" min="0" id="discount" class="form-control" formControlName="quantity"
                 placeholder="" />
-              <div *ngIf="submitted && restaurantForm.controls.qunatity.errors" class="invalid-feedback">
-                <div *ngIf="restaurantForm.controls.qunatity.errors.required">
+              <div *ngIf="submitted && restaurantForm.controls.quantity.errors" class="invalid-feedback">
+                <div *ngIf="restaurantForm.controls.quantity.errors.required">
                   Quantity is required
                 </div>
-                <div *ngIf="restaurantForm.controls.qunatity.errors.pattern">
+                <div *ngIf="restaurantForm.controls.quantity.errors.pattern">
                   Quantity is not valid
                 </div>
               </div>
