@@ -161,8 +161,7 @@ export class OrderComponent implements OnInit {
   itemsList(items) {
     this.dialogService.itemList(items);
   }
-
-  pageChange(newPage: number) {
+pageChange(newPage: number) {
     this.currentPage = newPage;
     if (this.status == "all") {
       this.allOrder();

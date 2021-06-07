@@ -170,7 +170,7 @@
           <div class="form-group col-md-6">
             <label for="price">Quantity</label>
             <div class="input-group">
-              <input type="number" min="0" id="discount" class="form-control" formControlName="quantity"
+              <input type="number" maxlength="4"  id="discount" class="form-control" formControlName="quantity"
                 placeholder="" />
               <div *ngIf="submitted && restaurantForm.controls.quantity.errors" class="invalid-feedback">
                 <div *ngIf="restaurantForm.controls.quantity.errors.required">

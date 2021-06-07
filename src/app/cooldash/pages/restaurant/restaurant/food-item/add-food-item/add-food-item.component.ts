@@ -236,4 +236,8 @@ export class AddFoodItemComponent implements OnInit {
       });
     }
   }
+  countDigit(e,ref){
+    console.log('Count',e,'Ref  value',ref.value);
+    
+  }
 }
