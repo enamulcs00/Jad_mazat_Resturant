@@ -18,6 +18,7 @@ import { MapsAPILoader } from "@agm/core";
   styleUrls: ["./add-food-item.component.scss"],
 })
 export class AddFoodItemComponent implements OnInit {
+  //#ref (keydown)="(ref.value.length > 3)?$event.preventDefault():null"
   restaurantForm: FormGroup;
   history = window.history;
   submitted: boolean = false;
@@ -49,6 +50,7 @@ export class AddFoodItemComponent implements OnInit {
       value: 2,
     },
   ];
+  IsExceed: boolean= false;
   constructor(
     private formBuilder: FormBuilder,
     public comm: CommonService,
@@ -236,8 +238,5 @@ export class AddFoodItemComponent implements OnInit {
       });
     }
   }
-  countDigit(e,ref){
-    console.log('Count',e,'Ref  value',ref.value);
-    
-  }
+  
 }
