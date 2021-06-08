@@ -172,6 +172,7 @@
             <div class="input-group">
               <input type="number" maxlength="4" #ref  id="discount" class="form-control" formControlName="quantity"
                 placeholder="" />
+               
               <div *ngIf="submitted && restaurantForm.controls.quantity.errors" class="invalid-feedback">
                 <div *ngIf="restaurantForm.controls.quantity.errors.required">
                   Quantity is required
@@ -179,11 +180,12 @@
                 <div *ngIf="restaurantForm.controls.quantity.errors.pattern">
                   Quantity is not valid
                 </div>
+                
               </div>
-              <div *ngIf="ref.value.length > 3" class="text-danger">
-                Quantity value can't be greater than 9999
-              </div>
-            </div>
+           </div>
+           <p *ngIf="ref.value > 9999" class="text-danger">
+            Quantity value can't be greater than 9999
+          </p>
           </div>
           <!-- <div class="form-group col-md-6 add_resurant" *ngIf="addOnsList && addOnsList.length">
             <label for="category">Add Ons</label>
