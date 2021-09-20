@@ -117,7 +117,7 @@ export class FoodTypeComponent implements OnInit {
     });
   }
 
-  addFoodType(item) {
+  addFoodType() {
     this.dialogService.addType(this.id).subscribe(res => {
       if (res == "yes") {
         this.getFoodType(this.id);

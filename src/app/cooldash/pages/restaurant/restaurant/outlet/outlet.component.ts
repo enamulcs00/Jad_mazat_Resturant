@@ -62,7 +62,7 @@ export class OutletComponent implements OnInit {
     });
   }
 
-  addOutlet(item) {
+  addOutlet() {
     this.dialogService.addOutlet(this.id).subscribe(res => {
       if (res == "yes") {
         this.getOutlettById(this.id);
