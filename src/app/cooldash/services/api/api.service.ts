@@ -37,7 +37,7 @@ export class ApiService {
     localStorage.setItem("token", token);
   }
   getToken() {
-    return localStorage.getItem("token");
+    return localStorage.getItem("id");
   }
 
   isLoggedIn() {
